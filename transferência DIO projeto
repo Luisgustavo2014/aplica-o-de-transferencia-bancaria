@@ -1,0 +1,65 @@
+using  System ;
+
+namespace  DIO . Banco
+{
+     conta de classe  pública
+    {
+        // Atributos da Classe
+        privado  TipoConta  TipoConta { get ; definir ; }
+
+         Saldo duplo  privado { get ; definir ; }
+
+         Crédito duplo  privado { get ; definir ; }
+         string  privada Nome { get ; definir ; }
+
+        // Método Construtor que vai ser chamado no momento que a classe para instanciada
+        pública  Conta ( TipoConta  tipoConta , double  saldo , double  credito , corda  nomo )
+        {
+            isso . TipoConta  =  tipoConta ;
+            isso . Saldo  =  saldo ;
+            isso . Crédito  =  crédito ;
+            isso . Nome  =  nome ;
+        }
+
+         bool  público Sacar ( double  valorSaque )
+        { 
+            // Validação de saldo suficiente
+            if ( this . Saldo  -  valorSaque  < ( this . Credito  * - 1 )) {
+                Console . WriteLine ( " Saldo insuficiente! " );
+                return  false ;
+            }
+
+            isso . Saldo  - =  valorSaque ;
+
+            Console . WriteLine ( " Saldo atual da conta de {0} é {1} " , este . Nome , este . Saldo );
+
+            return  true ;
+        }
+
+        public  void  Depositar ( double  valorDeposito )
+        {
+            isso . Saldo  + =  valorDeposito ;
+            // operação acima é equivalente a:
+            // this.Saldo = this.Saldo + valorDeposito;
+
+            Console . WriteLine ( " Saldo atual da conta de {0} é {1} " , este . Nome , este . Saldo );
+        }
+
+        public  void  Transferir ( double  valorTransferencia , Conta  contaDestino )
+        {
+            if ( this . Sacar ( valorTransferencia )) {
+                contaDestino . Depositar ( valorTransferencia );
+            }
+        }
+
+         string de substituição  pública ToString () 
+        {
+            string  retorno  =  " " ;
+            retorno  + =  " TipoConta "  +  isso . TipoConta  +  " | " ;
+            retorno  + =  " Nome "  +  isso . Nome  +  " | " ;
+            retorno  + =  " Saldo "  +  isso . Saldo  +  " | " ;
+            retorno  + =  " Crédito "  +  isso . Crédito  +  " | " ;
+            return  retorno ;
+        }
+    }
+}
